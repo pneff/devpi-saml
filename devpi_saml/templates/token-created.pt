@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+    <head>
+        <title>devpi - Token Created</title>
+        <metal:head use-macro="request.macros['head']" />
+    </head>
+    <body>
+        <metal:search use-macro="request.macros['navigation']" />
+        <div id="content">
+
+            <h1>Token Created</h1>
+
+            <p>
+                The token has been created. Note that it will only be
+                displayed once:
+            </p>
+
+            <p><input type="text" value="${token}" style="width:100%" /></p>
+
+            <p><a href="${urls.tokens}">Back to tokens</a></p>
+
+        </div>
+
+        <metal:footer use-macro="request.macros['footer']" />
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <title>devpi - Tokens</title>
+        <metal:head use-macro="request.macros['head']" />
+    </head>
+    <body>
+        <metal:search use-macro="request.macros['navigation']" />
+        <div id="content">
+
+            <h1>Tokens</h1>
+
+            <p tal:condition="error">${error}</p>
+
+            <p>These tokens can be used to log in with <tt>devpi token-login</tt>.</p>
+
+            <div tal:condition="tokens">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Expires</th>
+                        <th></th>
+                    </tr>
+                    <tr tal:repeat="token tokens">
+                        <td>${token.id}</td>
+                        <td>
+                            ${token.expires_text}
+                        </td>
+                        <td>
+                            <form method="post" action="${token.delete_url}" style="width:auto">
+                                <input type="submit" value="Delete" />
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div tal:condition="not:tokens">
+                <p>No tokens exist yet, create one below.</p>
+            </div>
+
+            <form method="post" action="${urls.add_token}">
+                <input type="submit" value="Create token" />
+            </form>
+
+        </div>
+
+        <metal:footer use-macro="request.macros['footer']" />
+    </body>
+</html>
